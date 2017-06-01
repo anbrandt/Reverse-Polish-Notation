@@ -1,37 +1,20 @@
 package com.andrzej;
 
-import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * Created by andrzej on 01.06.17.
+ */
+public class RPNexpressCalc {
 
 
-public class Main {
 
-
-	public static void main(String[] args) {
-
-		RPNexpressCalc rpnexpress = new RPNexpressCalc();
-		rpnexpress.resultFromRpn("5 1 2 + 4 * + 3 -");
-
-
-		//take the String, that is already an RPN statement/expression
-		String rpnExpression = "12 2 3 4 * 10 5 / + * +";
-		String rpneExpression2 = "2 3 + 5 *";
-		String rpnExpression3 = "5 1 2 + 4 * + 3 -";
-
-		//split this string by spaces
-		String[] splited = rpnExpression.split(" ");
-
-		//create an int value that will keep the result of RPN expression
+	public int resultFromRpn(String rpnExpression) {
 		int returnValue = 0;
 
-		//save the operators in the separate string
+		String[] splited = rpnExpression.split(" ");
 		String operators = "+-*/";
-
-		//create new Stack - we use two stack method over here - push and pop
 		Stack<String> stack = new Stack<String>();
-
-		//create a temp object called String t that goes through all of the splited table of strings, (which are still objects anyway)
 
 		for (String t : splited) {
 
@@ -64,10 +47,11 @@ public class Main {
 				}
 			}
 		}
-			//use with debugger to see the process thoroughly
+		//use with debugger to see the process thoroughly
 		returnValue = Integer.valueOf(stack.pop());
 
-		System.out.println(returnValue);
+		System.out.println("RPN expression is [" + rpnExpression + "] and the result is " + returnValue);
+		return returnValue;
 	}
-}
 
+}
