@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.util.Stack;
 
 
-
 public class Main {
 
 
@@ -13,10 +12,12 @@ public class Main {
 		RPNexpressCalc rpnexpress = new RPNexpressCalc();
 		//this method returns the result of the RPN expression and takes the String to constructor
 		//but the RPN expression REQUIRES SPACES BETWEEN INTEGERS AND OPERATORS
-		
 		rpnexpress.resultFromRpn("5 1 2 + 4 * + 3 -");
+		rpnexpress.resultFromRpn("12 1 2 3 * 4 5 / + * +");
+		rpnexpress.resultFromRpn("12 2 3 4 * 10 5 / + * +");
 
 
+		//Here without using the method in separate class
 		//take the String, that is already an RPN statement/expression
 		String rpnExpression = "12 2 3 4 * 10 5 / + * +";
 		String rpneExpression2 = "2 3 + 5 *";
@@ -67,7 +68,7 @@ public class Main {
 				}
 			}
 		}
-			//use with debugger to see the process thoroughly
+		//use with debugger to see the process thoroughly
 		returnValue = Integer.valueOf(stack.pop());
 
 		System.out.println(returnValue);
