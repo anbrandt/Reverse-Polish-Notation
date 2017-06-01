@@ -9,8 +9,11 @@ public class Main {
 
 
 	public static void main(String[] args) {
-
+		//with the method created in RPNexpressCalc class
 		RPNexpressCalc rpnexpress = new RPNexpressCalc();
+		//this method returns the result of the RPN expression and takes the String to constructor
+		//but the RPN expression REQUIRES SPACES BETWEEN INTEGERS AND OPERATORS
+		
 		rpnexpress.resultFromRpn("5 1 2 + 4 * + 3 -");
 
 
