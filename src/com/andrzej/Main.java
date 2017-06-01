@@ -12,9 +12,11 @@ public class Main {
 
 		//take the String, that is already an RPN statement/expression
 		String rpnExpression = "12 2 3 4 * 10 5 / + * +";
+		String rpneExpression2 = "2 3 + 5 *";
+		String rpnExpression3 = "5 1 2 + 4 * + 3 -";
 
 		//split this string by spaces
-		String[] splited = rpnExpression.split(" ");
+		String[] splited = rpnExpression3.split(" ");
 
 		//create an int value that will keep the result of RPN expression
 		int returnValue = 0;
@@ -25,7 +27,8 @@ public class Main {
 		//create new Stack - we use two stack method over here - push and pop
 		Stack<String> stack = new Stack<String>();
 
-		//create a temp object called String t that goes through all of the splited table of strings
+		//create a temp object called String t that goes through all of the splited table of strings, (which are still objects anyway)
+
 		for (String t : splited) {
 
 			//the first condition - if there are no operators in the String t than push it to the stack
@@ -57,7 +60,7 @@ public class Main {
 				}
 			}
 		}
-
+			//use with debugger to see the process thoroughly
 		returnValue = Integer.valueOf(stack.pop());
 
 		System.out.println(returnValue);
