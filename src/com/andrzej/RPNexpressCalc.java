@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
  */
 public class RPNexpressCalc {
 
-
+		//the final method - we declare a string of arithmetic expression and get the final result
 	public static void calculator(String arithmExpresssion) {
 		int result;
 		String temp;
@@ -31,7 +31,7 @@ public class RPNexpressCalc {
 
 	}
 
-
+		//get result from RPN expression
 	public int resultFromRpn(String rpnExpression) {
 		int returnValue = 0;
 
@@ -156,9 +156,14 @@ public class RPNexpressCalc {
 ////		}
 
 
+
+		//create a RPN expression from arithmetic expression
 	public String infixToRPN(String arithmExpression) {
 
 		Stack<String> stack = new Stack<String>();
+
+		//instead of creating another stack i created a String that will be used as a second stack
+		//using this method allows me to use StringTokenizer
 		String secondStack = "";
 
 		StringTokenizer stringTokenizer = new StringTokenizer(arithmExpression, "+-*/()", true);
