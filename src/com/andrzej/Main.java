@@ -11,11 +11,12 @@ public class Main {
 		RPNexpressCalc rpnexpress = new RPNexpressCalc();
 		//this method returns the result of the RPN expression and takes the String to constructor
 		//but the RPN expression REQUIRES SPACES BETWEEN INTEGERS AND OPERATORS
-		System.out.println();
+//		System.out.println();
 
 
 		rpnexpress.calculator("7+(1+2)*4-3");
-
+		rpnexpress.calculator("12+3*(4+10/5)*3");
+		rpnexpress.calculator("3+4*5-(10-7)*3+22");
 
 //		rpnexpress.resultFromRpn("5 1 2 + 4 * + 3 -");
 //		rpnexpress.resultFromRpn("12 1 2 3 * 4 5 / + * +");

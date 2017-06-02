@@ -7,13 +7,29 @@ import java.util.StringTokenizer;
 /**
  * Created by andrzej on 01.06.17.
  * <p>
- * This class contains three methods:
- * 1 - resultfromRpn - takes String of RPN expression and prints the result of the equation
- * 2 - infixToRPN - tekst String of regular arithmetic expression and prints the postfix notation RPN - reverse polish notation
- * 3 - getOperatorPriority - created for InfixtoRPN for purpose of ranking the operators
- * 4 - the final method CALCULATOR that first changes the arithmetic expression to RPN, and then RPN to result
+ * This class contains four methods:
+ * 1 - the final method CALCULATOR that first changes the arithmetic expression to RPN, and then RPN to result
+ * 2 - resultfromRpn - takes String of RPN expression and prints the result of the equation
+ * 3 - infixToRPN - tekst String of regular arithmetic expression and prints the postfix notation RPN - reverse polish notation
+ * 4 - getOperatorPriority - created for InfixtoRPN for purpose of ranking the operators
  */
 public class RPNexpressCalc {
+
+
+	public static void calculator(String arithmExpresssion) {
+		int result;
+		String temp;
+
+		RPNexpressCalc rpNexpressCalc = new RPNexpressCalc();
+
+		temp = rpNexpressCalc.infixToRPN(arithmExpresssion);
+
+		result = rpNexpressCalc.resultFromRpn(temp);
+
+		System.out.println("The postftix(RPN) expression of the equation [" + arithmExpresssion + "] is [" + temp +
+				"] and the result is " + result);
+
+	}
 
 
 	public int resultFromRpn(String rpnExpression) {
@@ -203,7 +219,8 @@ public class RPNexpressCalc {
 			e.getMessage();
 			System.out.println("Empty!");
 		}
-		System.out.println(secondStack);
+		//for the sake of calculator method working properly i commented the sout method
+//		System.out.println(secondStack);
 		return secondStack;
 
 	}
@@ -221,23 +238,6 @@ public class RPNexpressCalc {
 			return 3;
 
 		else return 0;
-
-	}
-
-
-	public static void calculator(String arithmExpresssion) {
-		int result;
-		String temp;
-
-		RPNexpressCalc rpNexpressCalc = new RPNexpressCalc();
-
-		temp = rpNexpressCalc.infixToRPN(arithmExpresssion);
-
-
-		result = rpNexpressCalc.resultFromRpn(temp);
-
-		System.out.println("The result of the equation " + arithmExpresssion + " is " + result);
-
 
 	}
 
