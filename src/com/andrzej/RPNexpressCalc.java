@@ -1,21 +1,20 @@
 package com.andrzej;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
 /**
  * Created by andrzej on 01.06.17.
+ * <p>
+ * This class contains three methods:
+ * 1 - resultfromRpn - takes String of RPN expression and prints the result of the equation
+ * 2 - infixToRPN - tekst String of regular arithmetic expression and prints the postfix notation RPN - reverse polish notation
+ * 3 - getOperatorPriority - created for InfixtoRPN for purpose of ranking the operators
+ * 4 - the final method CALCULATOR that first changes the arithmetic expression to RPN, and then RPN to result
  */
 public class RPNexpressCalc {
 
-
-	public static void main(String[] args) {
-
-			System.out.println("The infix to RPN method step by step");
-			infixToRPN("7 + ( 1 + 2 ) * 4 - 3");
-
-
-	}
 
 	public int resultFromRpn(String rpnExpression) {
 		int returnValue = 0;
@@ -60,11 +59,14 @@ public class RPNexpressCalc {
 			//use with debugger to see the process thoroughly
 			returnValue = Integer.valueOf(stack.pop());
 
-			System.out.println("RPN expression is [" + rpnExpression + "] and the result is " + returnValue);
+//			System.out.println("RPN expression is [" + rpnExpression + "] and the result is " + returnValue);
 
 		} catch (NumberFormatException e) {
 			e.getMessage();
 			System.out.println("ERROR! In expression [" + rpnExpression + "] you have to put spaces between the operators and operands");
+		} catch (EmptyStackException e) {
+			e.getMessage();
+			System.out.println("ERROR too many spaces between your expression");
 		}
 		return returnValue;
 
@@ -129,7 +131,6 @@ public class RPNexpressCalc {
 //	}
 
 
-
 ////		System.out.println(stackOne.pop());
 //
 //
@@ -139,7 +140,7 @@ public class RPNexpressCalc {
 ////		}
 
 
-	public static String infixToRPN(String arithmExpression) {
+	public String infixToRPN(String arithmExpression) {
 
 		Stack<String> stack = new Stack<String>();
 		String secondStack = "";
@@ -166,17 +167,17 @@ public class RPNexpressCalc {
 						secondStack = secondStack + (stack.pop() + " ");
 
 					stack.push(tempString);
-					System.out.println("The size of the stack is " + stack.size());
+					//checking how big is the stack in current moment of while loop
+//					System.out.println("The size of the stack is " + stack.size());
 
 				} else if (tempString.equals("(")) {
 
 					//if we have the opening bracket, we push it to the tempstring String
 					stack.push(tempString);
-					
+
 					//if we have a closing bracket and put the while loop inside to look for elements in the stack
 					//that are equal to openinng bracket s
-				}
-				else if (tempString.equals(")")) {
+				} else if (tempString.equals(")")) {
 
 					while (!stack.peek().equals("("))
 						secondStack = secondStack + (stack.pop() + " ");
@@ -198,6 +199,9 @@ public class RPNexpressCalc {
 			e.getMessage();
 			System.out.println("ERROR in the expression " + arithmExpression + ". You have to add spaces between " +
 					"operators");
+		} catch (EmptyStackException e) {
+			e.getMessage();
+			System.out.println("Empty!");
 		}
 		System.out.println(secondStack);
 		return secondStack;
@@ -213,11 +217,29 @@ public class RPNexpressCalc {
 		else if (operator.equals("*") || operator.equals("/"))
 			return 2;
 
+		else if (operator.equals("^"))
+			return 3;
+
 		else return 0;
 
 	}
 
 
+	public static void calculator(String arithmExpresssion) {
+		int result;
+		String temp;
+
+		RPNexpressCalc rpNexpressCalc = new RPNexpressCalc();
+
+		temp = rpNexpressCalc.infixToRPN(arithmExpresssion);
+
+
+		result = rpNexpressCalc.resultFromRpn(temp);
+
+		System.out.println("The result of the equation " + arithmExpresssion + " is " + result);
+
+
+	}
 
 
 }
