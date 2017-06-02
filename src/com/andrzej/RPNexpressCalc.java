@@ -9,6 +9,14 @@ import java.util.StringTokenizer;
 public class RPNexpressCalc {
 
 
+	public static void main(String[] args) {
+
+			System.out.println("The infix to RPN method step by step");
+			infixToRPN("7 + ( 1 + 2 ) * 4 - 3");
+
+
+	}
+
 	public int resultFromRpn(String rpnExpression) {
 		int returnValue = 0;
 
@@ -63,66 +71,75 @@ public class RPNexpressCalc {
 	}
 
 
-	public void arithToRPN(String artihExpression) {
-		//method that takes String - typical arithmetic expression and changes it to RPN - reverse polish notation
-
-		String[] splited = artihExpression.split(" ");
-		Stack<String> stackOne = new Stack<String>(); //only operators
-		Stack<String> stackTwo = new Stack<String>(); //only integers
-
-		String operators = "+-*/()";
-
-		String returnString;
-
-
-		for (String t : splited) {
-
-			if (!operators.contains(t)) {
-				stackOne.push(t);
-
-
-			} else if (operators.equals(")")) {
-				//first condition - if the operator is ")"
-				do {
-					stackTwo.add(stackOne.get(stackOne.size() - 1));
-					stackTwo.remove(stackTwo.size() - 1);
-				} while (stackTwo.get(stackTwo.size() - 1).equals("("));
-				stackTwo.remove(stackTwo.size() - 1);
-
-
-				//second condition - check the rank of the operator, compare them
-//			} else if ()
-
-
-			}
-
-			//jeżeli operatorem jest nawias zamykający
-
-
-			//drugi specjlany warunek - ranga operatora, sprawdzić co jest ostatnie na stosie, porównuję
-
-
-			//trzeci warunek
-
-
-			System.out.println(stackOne);
-			System.out.println(stackTwo);
-
-
-		}
-	}
-
-
-//		System.out.println(stackOne.pop());
-
-
-	//		for (int i = 0; i < splited.length; i++) {
-//			System.out.println(splited[i]);
+	//THIS ONE WAS NOT WORKING
+//	public String arithToRPN(String artihExpression) {
+//		//method that takes String - typical arithmetic expression and changes it to RPN - reverse polish notation
+//
+//		String[] splited = artihExpression.split(" ");
+//		Stack<String> stackOne = new Stack<String>(); //only operators
+//		Stack<String> stackTwo = new Stack<String>(); //only integers
+//
+//		String operators = "+-*/()";
+//
+//		String returnString = "";
+//
+//
+//		for (String t : splited) {
+//
+//			if (!operators.contains(t)) {
+//				stackOne.push(t);
+//
+//
+//			} else if (operators.equals("+") || operators.equals("-") || operators.equals("*") || operators.equals("/")) {
+//
+////				while (!stackOne.empty() && getOperatorPriority(stackOne.peek())) >= getOperatorPriority(t);
+//
+//
+//			}
+//				//first condition - if the operator is ")"
+//				do {
+//					stackTwo.add(stackOne.get(stackOne.size() - 1));
+//					stackTwo.remove(stackTwo.size() - 1);
+//				} while (stackTwo.get(stackTwo.size() - 1).equals("("));
+//				stackTwo.remove(stackTwo.size() - 1);
+//
+//
+//				//second condition - check the rank of the operator, compare them
+////			} else if (operators.equals())
+//
+//
+//			}
+//
+//			//jeżeli operatorem jest nawias zamykający
+//
+//
+//			//drugi specjlany warunek - ranga operatora, sprawdzić co jest ostatnie na stosie, porównuję
+//
+//
+//			//trzeci warunek
+//
+//
+//			System.out.println(stackOne);
+//			System.out.println(stackTwo);
+//
 //
 //		}
+//
+//	return returnString;
+//	}
 
 
-	public String infixToRPN(String arithmExpression) {
+
+////		System.out.println(stackOne.pop());
+//
+//
+//	//		for (int i = 0; i < splited.length; i++) {
+////			System.out.println(splited[i]);
+////
+////		}
+
+
+	public static String infixToRPN(String arithmExpression) {
 
 		Stack<String> stack = new Stack<String>();
 		String secondStack = "";
@@ -135,8 +152,7 @@ public class RPNexpressCalc {
 
 			while (stringTokenizer.hasMoreTokens()) {
 
-				//create temporary String that takes the next string
-
+				//create temporary String that takes the next string from the TOKENIZER
 				String tempString = stringTokenizer.nextToken();
 
 				if (tempString.equals("+") || tempString.equals("*") || tempString.equals("-") || tempString.equals("/")) {
@@ -150,13 +166,16 @@ public class RPNexpressCalc {
 						secondStack = secondStack + (stack.pop() + " ");
 
 					stack.push(tempString);
-				} else if (tempString.equals("("))
+					System.out.println("The size of the stack is " + stack.size());
 
-					//if we have the opening bracket, we push it to the string String
+				} else if (tempString.equals("(")) {
+
+					//if we have the opening bracket, we push it to the tempstring String
 					stack.push(tempString);
-
+					
 					//if we have a closing bracket and put the while loop inside to look for elements in the stack
 					//that are equal to openinng bracket s
+				}
 				else if (tempString.equals(")")) {
 
 					while (!stack.peek().equals("("))
@@ -174,7 +193,7 @@ public class RPNexpressCalc {
 			while (!stack.empty())
 				secondStack = secondStack + (stack.pop() + " ");
 
-			
+
 		} catch (NumberFormatException e) {
 			e.getMessage();
 			System.out.println("ERROR in the expression " + arithmExpression + ". You have to add spaces between " +
@@ -197,6 +216,8 @@ public class RPNexpressCalc {
 		else return 0;
 
 	}
+
+
 
 
 }
