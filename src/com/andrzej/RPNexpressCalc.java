@@ -1,5 +1,6 @@
 package com.andrzej;
 
+import java.io.UnsupportedEncodingException;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.StringTokenizer;
@@ -155,6 +156,29 @@ public class RPNexpressCalc {
 ////
 ////		}
 
+	public static boolean removeSpacesFromEquation(String arithmExpression) {
+
+		String removedSpaces = "";
+		String temp = "";
+
+
+		// FINISH THIS ONE
+		if (!arithmExpression.contains(" ")) {
+			return true;
+		} else {
+			arithmExpression.replaceAll("\\s+","");
+		} return true;
+//		removedSpaces = arithmExpression.replaceAll("\\s+","");
+
+//
+//		removedSpaces = arithmExpression;
+//
+//		System.out.println(removedSpaces);
+//		return removedSpaces;
+//		System.out.println(removedSpaces);
+//		return removedSpaces;
+	}
+
 
 	//create a RPN expression from arithmetic expression
 	public String infixToRPN(String arithmExpression) {
@@ -168,64 +192,65 @@ public class RPNexpressCalc {
 		StringTokenizer stringTokenizer = new StringTokenizer(arithmExpression, "+-*/()", true);
 
 
-		try {
+			try {
 
 
-			while (stringTokenizer.hasMoreTokens()) {
+				while (stringTokenizer.hasMoreTokens()) {
 
-				//create temporary String that takes the next string from the TOKENIZER
-				String tempString = stringTokenizer.nextToken();
+					//create temporary String that takes the next string from the TOKENIZER
+					String tempString = stringTokenizer.nextToken();
 
-				if (tempString.equals("+") || tempString.equals("*") || tempString.equals("-") || tempString.equals("/")) {
+					if (tempString.equals("+") || tempString.equals("*") || tempString.equals("-") || tempString.equals("/")) {
 
-					//using peek method on the stack (takes the highest element in the stack and returns it without
-					//changing the stack - all elements are the same on the stack afterwards
+						//using peek method on the stack (takes the highest element in the stack and returns it without
+						//changing the stack - all elements are the same on the stack afterwards
 
-					while (!stack.empty() && getOperatorPriority(stack.peek()) >= getOperatorPriority(tempString))
+						while (!stack.empty() && getOperatorPriority(stack.peek()) >= getOperatorPriority(tempString))
 
-						//postifx is the second stack in the String, and we push the element from the first stack to String rpnExpress
-						secondStack = secondStack + (stack.pop() + " ");
+							//postifx is the second stack in the String, and we push the element from the first stack to String rpnExpress
+							secondStack = secondStack + (stack.pop() + " ");
 
-					stack.push(tempString);
-					//checking how big is the stack in current moment of while loop
+						stack.push(tempString);
+						//checking how big is the stack in current moment of while loop
 //					System.out.println("The size of the stack is " + stack.size());
 
-				} else if (tempString.equals("(")) {
+					} else if (tempString.equals("(")) {
 
-					//if we have the opening bracket, we push it to the tempstring String
-					stack.push(tempString);
+						//if we have the opening bracket, we push it to the tempstring String
+						stack.push(tempString);
 
-					//if we have a closing bracket and put the while loop inside to look for elements in the stack
-					//that are equal to openinng bracket s
-				} else if (tempString.equals(")")) {
+						//if we have a closing bracket and put the while loop inside to look for elements in the stack
+						//that are equal to openinng bracket s
+					} else if (tempString.equals(")")) {
 
-					while (!stack.peek().equals("("))
-						secondStack = secondStack + (stack.pop() + " ");
-					//if we have the closing brackets we pop it from the stack
-					stack.pop();
+						while (!stack.peek().equals("("))
+							secondStack = secondStack + (stack.pop() + " ");
+						//if we have the closing brackets we pop it from the stack
+						stack.pop();
 
-					//
-				} else
+						//
+					} else
 
-					secondStack = secondStack + (tempString + " ");
+						secondStack = secondStack + (tempString + " ");
+				}
+
+				//final method - remove everything left from the stack to secondStack String
+				while (!stack.empty())
+					secondStack = secondStack + (stack.pop() + " ");
+
+
+			} catch (NumberFormatException e) {
+				e.getMessage();
+				System.out.println("ERROR in the expression " + arithmExpression + ". You have to add spaces between " +
+						"operators");
+			} catch (EmptyStackException e) {
+				e.getMessage();
+				System.out.println("Empty!");
 			}
-
-			//final method - remove everything left from the stack to secondStack String
-			while (!stack.empty())
-				secondStack = secondStack + (stack.pop() + " ");
-
-
-		} catch (NumberFormatException e) {
-			e.getMessage();
-			System.out.println("ERROR in the expression " + arithmExpression + ". You have to add spaces between " +
-					"operators");
-		} catch (EmptyStackException e) {
-			e.getMessage();
-			System.out.println("Empty!");
-		}
-		//for the sake of calculator method working properly i commented the sout method
+			//for the sake of calculator method working properly i commented the sout method
 //		System.out.println(secondStack);
-		return secondStack;
+			return secondStack;
+
 
 	}
 
