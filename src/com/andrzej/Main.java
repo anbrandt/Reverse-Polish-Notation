@@ -1,6 +1,5 @@
 package com.andrzej;
 
-import java.util.Scanner;
 import java.util.Stack;
 
 
@@ -15,6 +14,23 @@ public class Main {
 		rpnexpress.resultFromRpn("5 1 2 + 4 * + 3 -");
 		rpnexpress.resultFromRpn("12 1 2 3 * 4 5 / + * +");
 		rpnexpress.resultFromRpn("12 2 3 4 * 10 5 / + * +");
+
+
+//		rpnexpress.arithToRPN("7 + ( 1 + 2 ) * 4 - 3");
+
+		System.out.println();
+		System.out.println("infix to rpnExpress");
+		rpnexpress.infixToRPN("7 + ( 1 + 2 ) * 4 - 3");
+		System.out.println();
+		rpnexpress.infixToRPN("3 + 4 * 5 - 2 * 100 - 12 + 33 / 5");
+
+
+
+
+//		rpnexpress.infixToRPN("3 + 5 * 2 - 4");
+//		rpnexpress.resultFromRpn("7 1 2 + 4 * + 3 -");
+//		rpnexpress.infixToRPN("12 + 3 * ( 4 + 10 / 5 ) * 3");
+
 
 
 		//Here without using the method in separate class
