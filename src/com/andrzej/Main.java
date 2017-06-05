@@ -17,6 +17,7 @@ public class Main {
 		rpnexpress.calculator("7+(1+2)*4-3");
 		rpnexpress.calculator("12+3*(4+10/5)*3");
 		rpnexpress.calculator("3+4*5-(10-7)*3+22");
+		rpnexpress.calculator("242*5/2+3(2-3*4+2)+5");
 //		rpnexpress.calculator("3+4*5-(10-7)*3 + 22");
 
 
