@@ -158,6 +158,7 @@ public class RPNexpressCalc {
 
 	public static boolean removeSpacesFromEquation(String arithmExpression) {
 
+		//nie, prawdopodobnie tu nie powinien być boolean
 		String removedSpaces = "";
 		String temp = "";
 
